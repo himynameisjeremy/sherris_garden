@@ -36,7 +36,7 @@ module.exports = function(grunt) {
            cwd: 'client/views/',
            src: [
               "*",
-              "partials/*"
+              "gardenViews/*"
             ],
             "dest": "server/public/views/"
         },

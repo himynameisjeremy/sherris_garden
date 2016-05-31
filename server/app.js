@@ -49,10 +49,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 // CALL CATCHES
-app.get('/checkDB', function(req, res){
-    console.log('defaultsExist =', defaultsExist);
-    res.send(defaultsExist);
-});
+
 app.use('/plant', plant);
 app.use('/', index);
 

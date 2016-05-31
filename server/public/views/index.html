@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="sherrisGardenApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Sherri's Garden</title>
+
+    <!-- package manager scripts -->
+    <script type="text/javascript" src="../vendors/angular/angular.min.js"></script>
+    <script type="text/javascript" src="../vendors/angular-animate/angular-animate.min.js"></script>
+    <script type="text/javascript" src="../vendors/angular-aria/angular-aria.min.js"></script>
+    <script type="text/javascript" src="../vendors/angular-material/angular-material.min.js"></script>
+    <script type="text/javascript" src="../vendors/angular-messages/angular-messages.min.js"></script>
+    <script type="text/javascript" src="../vendors/angular-route/angular-route.min.js"></script>
+
+    <!-- custom scripts -->
+    <script type="text/javascript" src="../scripts/app.min.js"></script>
+    <!-- styles -->
+    <link rel="stylesheet" href="../vendors/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="../styles/style.css">
+  </head>
+  <body>
+    <div ng-controller="IndexController">
+
+
+      <md-toolbar>
+        <h1>Sherri's Garden</h1>
+        <md-tabs>
+          <md-tab label="Garden" ng-click="toGardenView()"></md-tab>
+          <md-tab label="Extra Tab" ng-click="toExtraView()"></md-tab>
+        </md-tabs>
+      </md-toolbar>
+
+
+    </div>
+    <main ng-view>
+
+    </main>
+  </body>
+
+
+
+
+</html>
