@@ -1,0 +1,25 @@
+{
+  "name": "sherris_garden",
+  "version": "1.0.0",
+  "description": "Garden Tracking app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jeremy Hjelmeland",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.6",
+    "angular-animate": "^1.5.6",
+    "angular-aria": "^1.5.6",
+    "angular-material": "^1.1.0-rc4-master-06e7e99",
+    "angular-route": "^1.5.6",
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "grunt": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-uglify": "^1.0.1",
+    "mongo": "^0.1.0",
+    "mongoose": "^4.4.19"
+  }
+}
