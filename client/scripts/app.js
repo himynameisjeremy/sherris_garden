@@ -1,6 +1,11 @@
-var sherrisGardenApp = angular.module("sherrisGardenApp", ['ngMaterial', 'ngRoute']);
+var sherrisGardenApp = angular.module("sherrisGardenApp", ['ngMaterial', 'ngRoute'])
 
-sherrisGardenApp.config(["$routeProvider", "$locationProvider", function($routeProvider, $locationProvider){
+.config(["$mdThemingProvider", "$routeProvider", "$locationProvider", function($mdThemingProvider, $routeProvider, $locationProvider){
+
+    $mdThemingProvider.theme('default')
+      .primaryPalette('brown')
+      .accentPalette('red');
+
     $routeProvider.
         when("/index", {
             templateUrl: "/views/index.html",
