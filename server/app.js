@@ -18,6 +18,7 @@ var mongoURI =    process.env.MONGODB_URI ||
    process.env.MONGOHQ_URL ||
    "mongodb://localhost/plantdb";
 var mongoDB = mongoose.connect(mongoURI).connection;
+var gardenCreated = null;
 
     // DATABASE SETUP
     mongoDB.on('error', function(err){
@@ -28,17 +29,19 @@ var mongoDB = mongoose.connect(mongoURI).connection;
         else if(err) {console.log('There was an error opening Mongo connection: ', err);}
     });
 /************* THIS CODE DOES THE ACTUAL DB CHECK FOR EXISTING COLLECTIONS *****************/
-//     var conn = mongoose.createConnection(mongoURI);
-//     conn.on('open', function(){
-//     conn.db.listCollections().toArray(function(err, names){
-//         if(names.length==0){
-//             console.log("Nothing Planted");
-//         }else{
-//             console.log("Things are planted");
-//         }
-//         conn.close();
-//     });
-// });
+    var conn = mongoose.createConnection(mongoURI);
+    conn.on('open', function(){
+    conn.db.listCollections().toArray(function(err, names){
+        if(names.length==0){
+            console.log("Nothing Planted");
+            gardenCreated = false;
+        }else{
+            console.log("Things are planted");
+            gardenCreated = true;
+        }
+        conn.close();
+    });
+});
 // /*******************************************************************************************/
 
 // SET PORT
@@ -49,7 +52,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 // CALL CATCHES
-
+app.get('/checkDB', function(req, res){
+    console.log('gardenCreated =', gardenCreated);
+    res.send(gardenCreated);
+});
 app.use('/plant', plant);
 app.use('/', index);
 
