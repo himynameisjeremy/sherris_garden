@@ -11,7 +11,7 @@ router.route('/')
   })
 
   .post(function(req, res){
-    console.log("User submitted this email: ", req.body);
+    console.log("User submitted this plant info: ", req.body);
     var newPlant = new Plant({
           type: req.body.type,
           date_planted: req.body.date_planted,
@@ -23,11 +23,11 @@ router.route('/')
           late_variety: req.body.late_variety,
           notes: req.body.notes
     });
-    Plant.create(newContact, function(err, post){
+    Plant.create(newPlant, function(err, post){
       if(err){
         console.log(err);
       }
-      res.send("end of submit.create", post);
+      res.send("end of Plant.create", post);
     });
 
 

@@ -8,10 +8,12 @@ var mongoose = require('mongoose');
 
 // MODELS
 var plantModel = require('./models/plant.js');
+var gardenModel = require('./models/garden.js');
 
 // ROUTES
 var index = require('./routes/index.js');
 var plant = require('./routes/plant.js');
+var garden = require('./routes/garden.js');
 
 // DATABASE VARS
 var mongoURI =    process.env.MONGODB_URI ||
@@ -57,6 +59,7 @@ app.get('/checkDB', function(req, res){
     res.send(gardenCreated);
 });
 app.use('/plant', plant);
+app.use('/garden', garden);
 app.use('/', index);
 
 // LISTENER

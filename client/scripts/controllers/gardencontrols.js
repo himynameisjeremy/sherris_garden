@@ -9,6 +9,9 @@ sherrisGardenApp.controller('IndexController',  ['$scope', '$http', '$window','G
 
 sherrisGardenApp.controller('GardenController',  ['$scope', '$http', '$window','GardenService', '$mdDialog', function($scope, $http, $window, GardenService, $mdDialog) {
   $scope.gardenCreated = null;
+  var northToSouth = null;
+  var eastToWest = null;
+
   var checkIfThereIsData = function(){
         $http.get('/checkDB').then(function(response){
             var bool = response.data;
@@ -61,7 +64,8 @@ sherrisGardenApp.controller('GardenController',  ['$scope', '$http', '$window','
           .ok('Submit')
           .cancel('Restart')
     $mdDialog.show(confirm).then(function(result) {
-      $scope.rowsNtoS = result;
+      northToSouth = result;
+      $scope.rowsNtoS = northToSouth;
       console.log($scope.rowsNtoS);
       createNewGarden3();
     }, function() {
@@ -81,7 +85,8 @@ sherrisGardenApp.controller('GardenController',  ['$scope', '$http', '$window','
           .ok('Submit')
           .cancel('Restart')
     $mdDialog.show(confirm).then(function(result) {
-      $scope.rowsEtoW = result;
+      eastToWest = result;
+      $scope.rowsEtoW = eastToWest;
       console.log($scope.rowsEtoW);
       createNewGarden4();
     }, function() {
@@ -90,6 +95,10 @@ sherrisGardenApp.controller('GardenController',  ['$scope', '$http', '$window','
       createNewGarden();
     });
   };
+  // var gardenSize1 = {
+  //   rowsNtoS : northToSouth,
+  //   rowsEtoW : eastToWest
+  // };
   createNewGarden4 = function() {
     var confirm = $mdDialog.confirm()
           .title('Confirm the following information:')
@@ -98,17 +107,29 @@ sherrisGardenApp.controller('GardenController',  ['$scope', '$http', '$window','
           .cancel('No')
     $mdDialog.show(confirm).then(function() {
       console.log("Yes");
-      createNewGardenInDB();
+      var setGardenSize = {
+        rowsNtoS : $scope.rowsNtoS,
+        rowsEtoW : $scope.rowsEtoW
+      };
+      createNewGardenInDB(setGardenSize);
     }, function() {
       console.log("No");
       createNewGarden();
     });
   };
-  createNewGardenInDB = function(){
+
+  createNewGardenInDB = function(gardenSize){
     console.log("Getting late so will be putting a Post here to make DB.");
+    $http.post('/garden', gardenSize).then(function(response){
+      console.log(gardenSize);
+      makeGarden();
+    });
   };
   $scope.createNewGarden = createNewGarden();
 
+  makeGarden = function(){
+    console.log("This will calculate tiles on screen");
+  };
 }]);
 
 sherrisGardenApp.controller('ExtraController',  ['$scope', '$http', '$window','GardenService',function($scope, $http, $window, GardenService) {
