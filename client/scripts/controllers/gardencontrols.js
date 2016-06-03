@@ -17,30 +17,16 @@ sherrisGardenApp.controller('GardenController',  ['$scope', '$http', '$window','
             var bool = response.data;
             if(bool === false){
              $scope.gardenCreated = false;
+             createNewGarden();
            }else{
              $scope.gardenCreated = true;
+             console.log("Garden already created");
            }
         });
   };
   checkIfThereIsData();
-  // createNewGarden = function(){
-  //   return console.log("Create New Garden pop up!");
-  // };
-  // $scope.createNewGarden = createNewGarden();
 
-  // createNewGarden = function() {
-  //   var confirm = $mdDialog.confirm()
-  //         .title('This is a test dialog box.')
-  //         .ok('Yes')
-  //         .cancel('No');
-  //   $mdDialog.show(confirm).then(function() {
-  //     console.log("Yes");
-  //     // GardenService.plantAGarden();
-  //     // $scope.getGarden();
-  //   }, function() {
-  //     console.log("No");
-  //   });
-  // };
+
   createNewGarden = function() {
     var confirm = $mdDialog.confirm()
           .title('Would you like to create your garden?')
@@ -95,10 +81,7 @@ sherrisGardenApp.controller('GardenController',  ['$scope', '$http', '$window','
       createNewGarden();
     });
   };
-  // var gardenSize1 = {
-  //   rowsNtoS : northToSouth,
-  //   rowsEtoW : eastToWest
-  // };
+
   createNewGarden4 = function() {
     var confirm = $mdDialog.confirm()
           .title('Confirm the following information:')
@@ -125,7 +108,6 @@ sherrisGardenApp.controller('GardenController',  ['$scope', '$http', '$window','
       makeGarden();
     });
   };
-  $scope.createNewGarden = createNewGarden();
 
   makeGarden = function(){
     console.log("This will calculate tiles on screen");
